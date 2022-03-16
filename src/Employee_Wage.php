@@ -19,14 +19,18 @@ class Employee_Wage implements computeEmpWage
     public $WAGE_PER_HR;
     public $WORKING_DAYS_PER_MONTH;
     public $WORKING_HOURS_PER_MONTH;
+    public $COMPANY_NAME;
+
+    public $dailyWageArray = array();
 
     public $workingHrs = 0;
     public $monthlyWage = 0;
     public $totalWorkingDays = 0;
     public $totalWorkingHours = 0;
 
-    public function __construct($wage, $days, $hours)
+    public function __construct($name, $wage, $days, $hours)
     {
+        $this->COMPANY_NAME = $name;
         $this->WAGE_PER_HR = $wage;
         $this->WORKING_DAYS_PER_MONTH = $days;
         $this->WORKING_HOURS_PER_MONTH = $hours;
@@ -80,21 +84,39 @@ class Employee_Wage implements computeEmpWage
      */
     function monthlyWage()
     {
+        $i = 0;
         while (
             $this->totalWorkingHours <= $this->WORKING_HOURS_PER_MONTH &&
             $this->totalWorkingDays < $this->WORKING_DAYS_PER_MONTH
         ) {
             $this->totalWorkingDays++;
             echo "Day:: " . $this->totalWorkingDays . "\n";
-            $dailyWage = $this->dailyWage($this->WAGE_PER_HR);
+            $dailyWage = $this->dailyWage();
+            $this->dailyWageArray[$i] = $dailyWage;
             $this->monthlyWage += $dailyWage;
             $this->totalWorkingHours += $this->workingHrs;
+            $i++;
         }
 
         echo "Total Working Days:: " . $this->totalWorkingDays . "\n";
         echo "Total Working Hours:: " . $this->totalWorkingHours . "\n";
         echo "Monthly Wage:: " . $this->monthlyWage . "\n\n";
+        $this->showDailyWage($this->totalWorkingDays);
         return $this->monthlyWage;
+    }
+
+    /**
+     * Function to print daily wage stored in the array
+     * Non-parameterized function
+     * No return values
+     */
+    function showDailyWage($totalWorkingDays)
+    {
+        echo "Daily Wage:: ";
+        for ($i = 0; $i < $totalWorkingDays; $i++) {
+            echo $this->dailyWageArray[$i] . " ";
+        }
+        echo "/n";
     }
 }
 $companyEmpWage = new CompanyEmpWage();
