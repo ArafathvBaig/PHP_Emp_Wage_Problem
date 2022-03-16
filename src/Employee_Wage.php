@@ -57,10 +57,9 @@ class Employee_Wage
      */
     function dailyWage()
     {
-        $hrs = $this->attendance();
-        $this->workingHrs = $hrs;
-        $dailyWage = $this->WAGE_PER_HR * $hrs;
-        echo "Working Hours:: " . $hrs . "\n";
+        $this->workingHrs = $this->attendance();
+        $dailyWage = $this->WAGE_PER_HR * $this->workingHrs;
+        echo "Working Hours:: " . $this->workingHrs . "\n";
         echo "Daily Wage:: " . $dailyWage . "\n\n";
         return $dailyWage;
     }
