@@ -1,6 +1,7 @@
 <?php
 echo "Welcome to Employee Wage Computation Problem\n";
 include 'Employee_Wage_Interface.php';
+include 'Company_Employee_Wage.php';
 
 /**
  * Author -> Arafath Baig
@@ -60,7 +61,7 @@ class Employee_Wage implements computeEmpWage
      * Function to Calculate Daily Wage
      * Printing the daily wage to the output
      * Calling attendance function to check employee attendance
-     * returns daily wage of the employee
+     * @return int daily wage of the employee
      */
     function dailyWage()
     {
@@ -93,25 +94,8 @@ class Employee_Wage implements computeEmpWage
         echo "Total Working Days:: " . $this->totalWorkingDays . "\n";
         echo "Total Working Hours:: " . $this->totalWorkingHours . "\n";
         echo "Monthly Wage:: " . $this->monthlyWage . "\n\n";
-    }
-
-    /**
-     * Function to take user input for wage per hour, max working days and 
-     * max working hours, calling monthly wage function and
-     * passing these constant variables as parameters
-     */
-    function userInput()
-    {
-        $name = readline('Enter Name of Company: ');
-        echo "Employee Wage Computation For\n";
-        echo "***** " . $name . " *****\n";
-        $this->monthlyWage();
+        return $this->monthlyWage;
     }
 }
-$company1 = new Employee_Wage(20, 20, 100);
-$company2 = new Employee_Wage(25, 25, 125);
-$company3 = new Employee_Wage(30, 30, 150);
-$empWageArray = array($company1, $company2, $company3);
-foreach ($empWageArray as $company) {
-    $company->userInput();
-}
+$companyEmpWage = new CompanyEmpWage();
+$companyEmpWage->numOfCompanies();
