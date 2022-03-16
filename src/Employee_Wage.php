@@ -1,12 +1,13 @@
 <?php
 echo "Welcome to Employee Wage Computation Problem\n";
+include 'Employee_Wage_Interface.php';
 
 /**
  * Author -> Arafath Baig
  * PHP Version -> 8.0.9
  * Class to compute employee wage problem
  */
-class Employee_Wage
+class Employee_Wage implements computeEmpWage
 {
     public $FULL_TIME_WORKING_HRS = 8;
     public $PART_TIME_WORKING_HRS = 4;
