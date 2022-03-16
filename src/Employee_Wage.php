@@ -23,15 +23,21 @@ class Employee_Wage
     function attendance()
     {
         $empCheck = rand(0, 2);
-        if ($empCheck == $this->IS_PART_TIME) {
-            echo "Part Time Employee\n";
-            return $this->PART_TIME_WORKING_HRS;
-        } elseif ($empCheck == $this->IS_FILL_TIME) {
-            echo "Full Time Employee\n";
-            return $this->FULL_TIME_WORKING_HRS;
-        } else {
-            echo "Employee is Absent\n";
-            return 0;
+        switch ($empCheck) {
+            case $this->IS_PART_TIME:
+                echo "Part Time Employee\n";
+                return $this->PART_TIME_WORKING_HRS;
+                break;
+
+            case $this->IS_FILL_TIME:
+                echo "Full Time Employee\n";
+                return $this->FULL_TIME_WORKING_HRS;
+                break;
+
+            default:
+                echo "Employee is Absent\n";
+                return 0;
+                break;
         }
     }
 
