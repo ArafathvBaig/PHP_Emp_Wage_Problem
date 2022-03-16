@@ -9,4 +9,6 @@ interface computeEmpWage
     public function attendance();
     public function dailyWage();
     public function monthlyWage();
+    public function showDailyWage($totalWorkingDays);
+    public function getTotalWage();
 }
